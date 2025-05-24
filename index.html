@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Basic Website</title>
+    <title>Interactive To-Do List</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,19 +13,16 @@
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-
         h1 {
             color: #0077cc;
             text-align: center;
             margin-bottom: 25px;
             letter-spacing: 1px;
         }
-
         ul {
             list-style-type: none;
             padding-left: 0;
         }
-
         li {
             background: #fff;
             margin-bottom: 12px;
@@ -33,23 +30,155 @@
             border-radius: 6px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             font-size: 18px;
+            cursor: pointer;
             transition: background 0.3s ease;
+            user-select: none;
         }
-
         li:hover {
             background: #e6f0ff;
+        }
+        button.back-btn {
+            background: #0077cc;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 16px;
+            border-radius: 6px;
             cursor: pointer;
+            margin-top: 20px;
+            user-select: none;
+        }
+        button.back-btn:hover {
+            background: #005fa3;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
         }
     </style>
 </head>
 <body>
     <h1>To-Do List:</h1>
-    <ul>
-        <li>Exercise</li>
-        <li>Groom Myself</li>
-        <li>Prepare For Work</li>
-        <li>Learn Different Coding Languages</li>
-        <li>Publish Finished Games</li>
+
+    <!-- Main List -->
+    <ul id="main-list">
+        <li data-content="exercise">Exercise</li>
+        <li data-content="groom">Groom Myself</li>
+        <li data-content="prepare">Prepare For Work</li>
+        <li data-content="learn">Learn Different Coding Languages</li>
+        <li data-content="publish">Publish Finished Games</li>
     </ul>
+
+    <!-- Exercise Content -->
+    <div id="exercise" class="content">
+        <h2>Exercise Advice</h2>
+        <h3>Lose Weight</h3>
+        <p>To lose weight, focus on a calorie deficit with cardio exercises such as running, cycling, or swimming for 30-60 minutes daily.</p>
+        <h3>Gain Muscle</h3>
+        <p>For muscle gain, target major muscle groups with strength training: chest, back, legs, shoulders, arms.</p>
+        <ul>
+            <li><strong>Chest:</strong> Push-ups, bench press, dumbbell flies</li>
+            <li><strong>Back:</strong> Pull-ups, rows, deadlifts</li>
+            <li><strong>Legs:</strong> Squats, lunges, leg press</li>
+            <li><strong>Shoulders:</strong> Shoulder press, lateral raises</li>
+            <li><strong>Arms:</strong> Bicep curls, tricep dips</li>
+        </ul>
+        <button class="back-btn">Back</button>
+    </div>
+
+    <!-- Groom Myself Content -->
+    <div id="groom" class="content">
+        <h2>Grooming Tips for Men</h2>
+        <p>Good grooming improves confidence and appearance. Here's how to groom yourself effectively:</p>
+        <ul>
+            <li>Maintain a clean haircut, visit barber regularly.</li>
+            <li>Trim facial hair neatly or shave regularly.</li>
+            <li>Keep nails clean and trimmed.</li>
+            <li>Use deodorant and perfume moderately.</li>
+            <li>Moisturize skin and protect with sunscreen.</li>
+            <li>Dress neatly and keep clothes clean.</li>
+        </ul>
+        <button class="back-btn">Back</button>
+    </div>
+
+    <!-- Prepare For Work Content -->
+    <div id="prepare" class="content">
+        <h2>Prepare For Work</h2>
+        <p>Getting ready for work includes:</p>
+        <ul>
+            <li>Plan your day the night before.</li>
+            <li>Get up early and have a healthy breakfast.</li>
+            <li>Dress appropriately and check your essentials (keys, wallet, phone).</li>
+            <li>Review your tasks and prioritize.</li>
+            <li>Practice positive mindset and stay motivated.</li>
+        </ul>
+        <button class="back-btn">Back</button>
+    </div>
+
+    <!-- Learn Coding Content -->
+    <div id="learn" class="content">
+        <h2>Learn Different Coding Languages</h2>
+        <p>Start learning coding languages step-by-step:</p>
+        <ul>
+            <li><strong>HTML & CSS:</strong> Build website structure and styling.</li>
+            <li><strong>JavaScript:</strong> Add interactivity to web pages.</li>
+            <li><strong>Python:</strong> Great for beginners and data science.</li>
+            <li><strong>Java:</strong> Widely used for apps and enterprise software.</li>
+            <li><strong>C++:</strong> For system/software development and games.</li>
+            <li>Practice regularly and build projects!</li>
+        </ul>
+        <button class="back-btn">Back</button>
+    </div>
+
+    <!-- Publish Games Content -->
+    <div id="publish" class="content">
+        <h2>Publish Finished Games</h2>
+        <p>Steps to publish your games:</p>
+        <ul>
+            <li>Test your game thoroughly.</li>
+            <li>Create a compelling description and visuals.</li>
+            <li>Choose platforms (Steam, itch.io, mobile app stores).</li>
+            <li>Set pricing or choose free.</li>
+            <li>Promote your game on social media and forums.</li>
+            <li>Listen to player feedback and update.</li>
+        </ul>
+        <button class="back-btn">Back</button>
+    </div>
+
+<script>
+    const listItems = document.querySelectorAll('#main-list li');
+    const contents = document.querySelectorAll('.content');
+    const backButtons = document.querySelectorAll('.back-btn');
+    const mainList = document.getElementById('main-list');
+
+    listItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Hide main list
+            mainList.style.display = 'none';
+
+            // Show corresponding content
+            const contentId = item.getAttribute('data-content');
+            contents.forEach(content => {
+                if (content.id === contentId) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        });
+    });
+
+    backButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Hide all content
+            contents.forEach(content => content.classList.remove('active'));
+            // Show main list
+            mainList.style.display = 'block';
+        });
+    });
+</script>
+
 </body>
 </html>
