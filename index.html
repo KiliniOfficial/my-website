@@ -1,10 +1,18 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Interactive To-Do List</title>
     <style>
         /* Reset box-sizing for all elements */
         *, *::before, *::after {
             box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
         }
 
         body {
@@ -19,6 +27,7 @@
             position: relative;
             min-height: 100vh;
         }
+
         /* Logo container */
         .logo {
             position: fixed;
@@ -29,7 +38,9 @@
             cursor: default;
             user-select: none;
             z-index: 1000;
+            transition: width 0.3s ease, height 0.3s ease;
         }
+
         /* Logo image style */
         .logo img {
             width: 100%;
@@ -43,6 +54,7 @@
             margin-bottom: 25px;
             letter-spacing: 1px;
             font-weight: 700;
+            font-size: 2rem;
         }
 
         ul {
@@ -57,7 +69,7 @@
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.07);
-            font-size: 18px;
+            font-size: 1.125rem; /* 18px */
             cursor: pointer;
             transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
             user-select: none;
@@ -78,7 +90,7 @@
             color: white;
             border: none;
             padding: 12px 20px;
-            font-size: 16px;
+            font-size: 1rem;
             border-radius: 8px;
             cursor: pointer;
             margin-top: 20px;
@@ -119,10 +131,53 @@
             transform: translateX(-50%);
             color: #0077cc;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 1rem;
             user-select: none;
             pointer-events: none;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 5px 10px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            body {
+                margin: 20px 15px 40px 15px;
+                padding: 15px 20px 40px 20px;
+                max-width: 100%;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+
+            li, button.muscle-btn {
+                font-size: 1rem;
+                padding: 12px 15px;
+            }
+
+            button.back-btn {
+                font-size: 0.9rem;
+                padding: 10px 16px;
+                width: 100%;
+            }
+
+            /* Scale down the logo */
+            .logo {
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                left: 10px;
+            }
+
+            /* Footer adjustments */
+            .footer-text {
+                font-size: 0.9rem;
+                bottom: 5px;
+                padding: 2px 5px;
+            }
         }
     </style>
 </head>
@@ -207,34 +262,34 @@
 
     <!-- Groom Myself Content -->
     <div id="groom" class="content">
-    <h2>Grooming Tips for Men</h2>
-    <p>Good grooming improves confidence and appearance. Here's how to groom yourself effectively:</p>
-    <ul>
-        <li>Maintain a clean haircut, visit barber regularly.</li>
-        <li>Trim facial hair neatly or shave regularly.</li>
-        <li>Keep nails clean and trimmed.</li>
-        <li>Use deodorant and perfume moderately.</li>
-        <li>Moisturize skin and protect with sunscreen.</li>
-        <li>Dress neatly and keep clothes clean.</li>
-    </ul>
-
-    <!-- Collapsible Eye Care Tips -->
-    <details style="margin-top:20px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: #f9f9f9;">
-        <summary style="font-weight: 600; cursor: pointer; color: #005fa3;">Eye Care Tips: Reduce Eye Bags and Sunken Eyes</summary>
-        <ul style="margin-top: 10px;">
-            <li>Get consistent, quality sleep (7-9 hours per night).</li>
-            <li>Stay well-hydrated throughout the day.</li>
-            <li>Apply cold compresses or chilled cucumber slices to the eyes for 10-15 minutes.</li>
-            <li>Use eye creams containing caffeine or retinol to improve circulation and skin elasticity.</li>
-            <li>Maintain a healthy diet rich in antioxidants, vitamins C and K.</li>
-            <li>Reduce salt intake to minimize fluid retention.</li>
-            <li>Protect skin from sun damage using sunscreen and sunglasses.</li>
-            <li>If persistent, consult a dermatologist for treatments like fillers or laser therapy.</li>
+        <h2>Grooming Tips for Men</h2>
+        <p>Good grooming improves confidence and appearance. Here's how to groom yourself effectively:</p>
+        <ul>
+            <li>Maintain a clean haircut, visit barber regularly.</li>
+            <li>Trim facial hair neatly or shave regularly.</li>
+            <li>Keep nails clean and trimmed.</li>
+            <li>Use deodorant and perfume moderately.</li>
+            <li>Moisturize skin and protect with sunscreen.</li>
+            <li>Dress neatly and keep clothes clean.</li>
         </ul>
-    </details>
 
-    <button class="back-btn">Back</button>
-</div>
+        <!-- Collapsible Eye Care Tips -->
+        <details style="margin-top:20px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: #f9f9f9;">
+            <summary style="font-weight: 600; cursor: pointer; color: #005fa3;">Eye Care Tips: Reduce Eye Bags and Sunken Eyes</summary>
+            <ul style="margin-top: 10px;">
+                <li>Get consistent, quality sleep (7-9 hours per night).</li>
+                <li>Stay well-hydrated throughout the day.</li>
+                <li>Apply cold compresses or chilled cucumber slices to the eyes for 10-15 minutes.</li>
+                <li>Use eye creams containing caffeine or retinol to improve circulation and skin elasticity.</li>
+                <li>Maintain a healthy diet rich in antioxidants, vitamins C and K.</li>
+                <li>Reduce salt intake to minimize fluid retention.</li>
+                <li>Protect skin from sun damage using sunscreen and sunglasses.</li>
+                <li>If persistent, consult a dermatologist for treatments like fillers or laser therapy.</li>
+            </ul>
+        </details>
+
+        <button class="back-btn">Back</button>
+    </div>
 
     <!-- Prepare For War Content -->
     <div id="prepare" class="content">
@@ -259,90 +314,86 @@
             <li><strong>Python:</strong> Great for beginners and data science.</li>
             <li><strong>Java:</strong> Widely used for apps and enterprise software.</li>
             <li><strong>C++:</strong> For system/software development and games.</li>
-            <li>Practice regularly and build projects!</li>
+            <li>Use online tutorials, courses, and practice projects regularly.</li>
         </ul>
         <button class="back-btn">Back</button>
     </div>
 
-    <!-- Publish Games Content -->
+    <!-- Publishing Content -->
     <div id="publish" class="content">
-        <h2>Publish Finished Games</h2>
-        <p>Steps to publish your games:</p>
+        <h2>Publishing Almost-Finished Games</h2>
+        <p>Tips for publishing games:</p>
         <ul>
-            <li>Test your game thoroughly.</li>
-            <li>Create a compelling description and visuals.</li>
-            <li>Choose platforms (Steam, itch.io, mobile app stores).</li>
-            <li>Set pricing or choose free.</li>
-            <li>Promote your game on social media and forums.</li>
-            <li>Listen to player feedback and update.</li>
+            <li>Prepare marketing materials: screenshots, trailers.</li>
+            <li>Choose platforms (Steam, itch.io, consoles).</li>
+            <li>Test thoroughly and fix bugs.</li>
+            <li>Set a realistic launch date.</li>
+            <li>Engage with the community early.</li>
+            <li>Gather feedback for post-launch updates.</li>
         </ul>
         <button class="back-btn">Back</button>
     </div>
 
-<script>
-    // Main To-Do List <-> Content switching
-    const listItems = document.querySelectorAll('#main-list li');
-    const contents = document.querySelectorAll('.content');
-    const backButtons = document.querySelectorAll('.back-btn');
-    const mainList = document.getElementById('main-list');
+    <div class="footer-text">© 2025 Blackstreet Corp.</div>
 
-    listItems.forEach(item => {
-        item.addEventListener('click', () => {
-            mainList.style.display = 'none';
-            const contentId = item.getAttribute('data-content');
-            contents.forEach(content => {
-                if (content.id === contentId) {
-                    content.classList.add('active');
-                } else {
-                    content.classList.remove('active');
+    <script>
+        // Navigation logic for the list and content
+        const mainList = document.getElementById('main-list');
+        const contents = document.querySelectorAll('.content');
+        const backButtons = document.querySelectorAll('button.back-btn');
+
+        mainList.addEventListener('click', e => {
+            if(e.target.tagName === 'LI') {
+                const targetId = e.target.getAttribute('data-content');
+                if(targetId) {
+                    mainList.style.display = 'none';
+                    contents.forEach(c => {
+                        c.classList.remove('active');
+                        if(c.id === targetId) {
+                            c.classList.add('active');
+                        }
+                    });
                 }
-            });
-            // Reset Exercise muscle list & details if needed
-            if (contentId === 'exercise') {
-                showMuscleList();
             }
         });
-    });
 
-    backButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Check if back button is inside muscle detail
-            if (btn.classList.contains('muscle-back')) {
-                showMuscleList();
-            } else {
-                contents.forEach(content => content.classList.remove('active'));
+        backButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Check if inside muscle-detail or main content
+                const muscleDetails = document.querySelectorAll('.muscle-detail');
+                muscleDetails.forEach(md => md.classList.remove('active'));
+                document.querySelectorAll('.muscle-list').forEach(ml => ml.style.display = 'block');
+                contents.forEach(c => c.classList.remove('active'));
                 mainList.style.display = 'block';
-            }
+            });
         });
-    });
 
-    // Muscle buttons and details inside Exercise section
-    const muscleButtons = document.querySelectorAll('.muscle-btn');
-    const muscleDetails = document.querySelectorAll('.muscle-detail');
-    const muscleListDiv = document.querySelector('.muscle-list');
-
-    function showMuscleList() {
-        muscleListDiv.style.display = 'block';
-        muscleDetails.forEach(detail => detail.classList.remove('active'));
-    }
-
-    muscleButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            muscleListDiv.style.display = 'none';
-            const muscleId = btn.getAttribute('data-muscle');
-            muscleDetails.forEach(detail => {
-                if (detail.id === muscleId) {
-                    detail.classList.add('active');
-                } else {
-                    detail.classList.remove('active');
+        // Muscle buttons navigation
+        const muscleButtons = document.querySelectorAll('.muscle-btn');
+        muscleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const muscleId = btn.getAttribute('data-muscle');
+                if(muscleId) {
+                    // Hide muscle list and show muscle detail
+                    btn.parentElement.style.display = 'none';
+                    document.querySelectorAll('.muscle-detail').forEach(md => md.classList.remove('active'));
+                    const targetMuscle = document.getElementById(muscleId);
+                    if(targetMuscle) {
+                        targetMuscle.classList.add('active');
+                    }
                 }
             });
         });
-    });
-</script>
 
-<!-- Footer Text -->
-<div class="footer-text">As of 24/05/2025</div>
-
+        // Back button inside muscle details
+        const muscleBackButtons = document.querySelectorAll('.muscle-back');
+        muscleBackButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Hide all muscle details and show muscle list
+                document.querySelectorAll('.muscle-detail').forEach(md => md.classList.remove('active'));
+                document.querySelectorAll('.muscle-list').forEach(ml => ml.style.display = 'block');
+            });
+        });
+    </script>
 </body>
 </html>
